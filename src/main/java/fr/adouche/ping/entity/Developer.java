@@ -1,4 +1,4 @@
-package fr.adouche.entity;
+package fr.adouche.ping.entity;
 
 import java.util.Objects;
 

@@ -1,9 +1,8 @@
-package fr.adouche.ping.boundary;
+package fr.adouche.ping.control;
 
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 
 @ApplicationScoped

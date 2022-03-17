@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: adouche
+      MYSQL_DATABASE: fruits
+    ports:
+      - "3306:3306"
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
