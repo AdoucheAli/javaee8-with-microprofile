@@ -23,7 +23,6 @@ http://localhost:8080/openapi
 
 # Docker commands
 
----
 
 ## Images
 
@@ -39,7 +38,7 @@ docker images -q
 
 ### Remove all images
 
-docker rmi {docker images -aq}
+docker rmi $(docker images -aq)
 
 ### Remove specific image
 
@@ -47,7 +46,7 @@ docker rmi adoucheali/javaee8-with-microprofile
 
 ### Remove dangling image
 
-docker rmi {docker images -q -f "dangling=true"}
+docker rmi $(docker images -q -f "dangling=true")
 
 ## Compose
 
@@ -73,11 +72,11 @@ docker ps
 
 ### Remove all
 
-docker rm ${docker ps -aq}
+docker rm $(docker ps -aq)
 
 ### Remove with filter
 
-docker rm ${docker ps -f status=exited -aq}
+docker rm $(docker ps -f status=exited -aq)
 
 ### Remove specific
 
