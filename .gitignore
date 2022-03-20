@@ -23,6 +23,7 @@ out/
 *.tar.gz
 *.rar
 **/target
+**/deployment-volume
 *dummy*
 ObjectStore
 maven-wrapper.jar

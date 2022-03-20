@@ -1,3 +1,3 @@
-#FROM payara/server-full
-FROM airhacks/payara:latest
-COPY ./target/javaee8-with-microprofile.war ${DEPLOYMENT_DIR}
+#FROM airhacks/payara:latest
+FROM payara/server-full
+COPY ./deployment-volume/javaee8-with-microprofile.war ${DEPLOYMENT_DIR}

@@ -3,14 +3,21 @@ version: '3.1'
 services:
   db:
     image: mysql:latest
+    container_name: javaee8-with-microprofile-mysql
     environment:
       MYSQL_ROOT_PASSWORD: adouche
       MYSQL_DATABASE: fruits
     ports:
       - "3306:3306"
   app:
-    build: .
+    #build: .
+    image: payara/server-full:latest
+    container_name: javaee8-with-microprofile-payara
     ports:
       - "8080:8080"
+      - "4848:4848"
+    volumes:
+      - ./deployment-volume:/opt/payara/deployments
+      #- ./deployment-volume/:/opt/payara/appserver/glassfish/domains/domain1/autodeploy
     depends_on:
       - db

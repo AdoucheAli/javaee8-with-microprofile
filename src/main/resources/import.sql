@@ -22,4 +22,4 @@ insert into fruits (name, season) values ('apple', 'spring');
 insert into fruits (name, season) values ('lemon', 'spring');
 insert into fruits (name, season) values ('kiwi', 'spring');
 insert into fruits (name, season) values ('rhubarb', 'spring');
-insert into fruits (name, season) values ('rasberry', 'spring');
+insert into fruits (name, season) values ('raspberry', 'spring');

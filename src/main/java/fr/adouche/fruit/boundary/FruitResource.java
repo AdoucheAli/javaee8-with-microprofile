@@ -7,8 +7,8 @@ import org.eclipse.microprofile.metrics.annotation.Metered;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -27,7 +27,16 @@ public class FruitResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Metered
-    public Response getAll() {
+    public Response getAll(@QueryParam("name") String name, @QueryParam("season") String season) {
+
+        if (name != null && !name.trim().isEmpty()) {
+            return byName(name);
+        }
+
+        if (season != null && !season.isEmpty()) {
+            return bySeason(season);
+        }
+
         List<Fruit> fruits = fruitService.getAll();
         List<FruitDTO> fruitDtos = fruits.stream()
                 .map(fruit ->
@@ -39,23 +48,16 @@ public class FruitResource {
                 .build();
     }
 
-    @GET
-    @Path("/{name}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Metered
-    public Response getOne(@PathParam("name") String name) {
-        Fruit fruit = fruitService.getFruitByName(name);
 
+    private Response byName(String name) {
+        Fruit fruit = fruitService.getFruitByName(name);
         return Response.ok()
                 .entity(FruitDTO.of(fruit.getName(), fruit.getSeason(), fruityService.getFruitByName(name)))
                 .build();
     }
 
-    @GET
-    @Path("/season/{season}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Metered
-    public Response bySeason(@PathParam("season") String season) {
+
+    private Response bySeason(String season) {
         List<FruitDTO> fruitDtos = fruitService.getFruitBySeason(season)
                 .stream()
                 .map(fruit ->
